@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
   res.send("Hello");
 });
 
+router.use("/public", express.static("public"));
 router.use("/api", authRouter);
 router.use("/api", userRouter);
 router.use("/api", todoRouter);

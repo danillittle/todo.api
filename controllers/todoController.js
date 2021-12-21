@@ -1,3 +1,4 @@
+const fs = require("fs");
 const Todo = require("../models/Todo");
 
 module.exports = {
@@ -20,10 +21,11 @@ module.exports = {
   },
 
   create: (req, res) => {
-    const { body } = req;
+    const { body, file } = req;
 
     const todo = {
       ...body,
+      image: file.path,
       createdBy: req.auth._id,
     };
 
@@ -34,10 +36,13 @@ module.exports = {
   },
 
   update: (req, res) => {
-    const { body, params } = req;
+    const { body, params, file } = req;
+
+    console.log(file);
 
     const todo = {
       ...body,
+      image: file.path,
       createdBy: req.auth._id,
     };
 
